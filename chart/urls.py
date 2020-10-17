@@ -6,4 +6,5 @@ app_name = 'chart'
 
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
+    path('company/<int:pk>', views.CompanyView.as_view(), name='company'),
 ]
