@@ -14,11 +14,10 @@ class IndexView(TemplateView):
 
 class CompanyView(DetailView):
   model = Company
-  from django.views.generic.list import MultipleObjectMixin
+
   def get_context_data(self, **kwargs):
     object_list = Statement.objects.filter(company=kwargs['object']).order_by('-fiscal_year')
     context = super(CompanyView, self).get_context_data(object_list=object_list, **kwargs)
-    
     return context
 
 class StatementView(DetailView):
