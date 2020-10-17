@@ -27,7 +27,7 @@ class Statement(models.Model):
   cf_finance = models.IntegerField("財務ＣＦ（百万円）", default=0)
 
   def __str__(self):
-    return str(self.company) + '決算日：【 ' + str(self.fiscal_year) + '】'
+      return str(self.company) + '決算日：【 ' + str(self.fiscal_year) + '】'
 
   # 総資産
   def bs_total_assets(self):
@@ -92,4 +92,22 @@ class Statement(models.Model):
   # キャッシュフロー合計
   def cf_total_amount(self):
       f = self.cf_operating + self.cf_investment + self.cf_finance
+      return f
+  
+  # 流動比率
+  def current_rate(self):
+      if self.bs_current_liabilities > 0:
+          f = self.bs_current_assets / self.bs_current_liabilities * 100
+      else:
+          f = '-'
+      return f
+
+  # ROE
+  def roe(self):
+      f = self.pl_operating_profit / self.bs_net_assets * 100
+      return f
+
+  # ROA
+  def roa(self):
+      f = self.pl_operating_profit / self.bs_total_assets() * 100
       return f
