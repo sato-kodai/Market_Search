@@ -23,5 +23,5 @@ class CompanyView(DetailView):
     }
     return params
 
-  class StatementView(DetailView):
-    model = Statement
+class StatementView(DetailView):
+  model = Statement

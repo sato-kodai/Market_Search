@@ -7,7 +7,6 @@ class Company(models.Model):
   def __str__(self):
     return str(self.name)
 
-
 class Statement(models.Model):
   company = models.ForeignKey(Company, on_delete=models.PROTECT)
   fiscal_year = models.DateField("決算日")
