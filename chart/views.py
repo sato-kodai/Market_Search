@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import generic
 from django.views.generic import TemplateView, DetailView
 from .models import Company, Statement 
+from django.views.generic.list import MultipleObjectMixin
 
 class IndexView(TemplateView):
   template_name = 'chart/index.html'
@@ -13,15 +14,12 @@ class IndexView(TemplateView):
 
 class CompanyView(DetailView):
   model = Company
-
+  from django.views.generic.list import MultipleObjectMixin
   def get_context_data(self, **kwargs):
-    company_name = kwargs['object'].name
-    statement_list = Statement.objects.filter(company=kwargs['object']).order_by('-fiscal_year')[:4]
-    params = {
-        'company_name': company_name,
-        'statement_list': statement_list,
-    }
-    return params
+    object_list = Statement.objects.filter(company=kwargs['object']).order_by('-fiscal_year')
+    context = super(CompanyView, self).get_context_data(object_list=object_list, **kwargs)
+    
+    return context
 
 class StatementView(DetailView):
   model = Statement
