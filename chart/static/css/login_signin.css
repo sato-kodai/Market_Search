@@ -40,5 +40,9 @@ body {
 }
 
 h1 {
-  padding-bottom: 30px;
+  padding-bottom: 20px;
+}
+
+.form-label-group{
+  margin-bottom: 20px;
 }
