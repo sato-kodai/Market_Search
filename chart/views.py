@@ -1,8 +1,7 @@
 from django.shortcuts import render
-from django.views import generic
 from django.views.generic import TemplateView, DetailView
 from .models import Company, Statement 
-from django.views.generic.list import MultipleObjectMixin
+
 
 class IndexView(TemplateView):
   template_name = 'chart/index.html'
